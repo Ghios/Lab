@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <math.h>
+#include <cs50.h>
+
+unsigned int factorial (int n)
+{
+    unsigned int r;
+    for (r = 1; n > 1; r *= (n--) );
+    return r;
+}
+
+int main()
+{
+    float e, x, y;
+    e = 2.71;
+    x = 1;
+    float result;
+
+    for (x=1;x<=2;x += 0.1)
+    {
+        result = 1;
+        y = pow(e,x);
+        printf ("y = %f | x = %.2f \n",y, x);
+         
+    }
+    
+    printf("\n\n");
+    
+    float s = 0;
+    for (int n = 1; n<17; n++)
+        {
+            s = 1 + pow (x, n) / factorial(n);
+            printf ("s = %f | n = %d\n", s, n);
+        }    
+            
+    printf("\n\n");
+    
+    //float eps = 0.0001;
+    for (float s2 = 1,n = 1; n<34; n++)
+           {
+                s2 = 1 + pow (x, n) / factorial(n);
+                printf ("s2 = %f | n = %f\n", s2, n);
+           }    
+            
+    return 0;
+}
