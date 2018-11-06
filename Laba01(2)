@@ -1,0 +1,23 @@
+#include<stdio.h>
+#include<math.h>
+#include<cs50.h>
+
+int main()
+{
+    int n, m, result;
+    printf("Enter first variable: \n");
+    n = GetInt();
+    printf("Enter second variable: \n");
+    m = GetInt();
+    
+    result = n+++m;
+    printf("Your first result = %d\n", result);
+    
+    result = m-->n;
+    printf("Your second result = %d\n", result);
+    
+    result = n-->m;
+    printf("Your third result = %d\n", result);
+    
+    return 0;
+}
