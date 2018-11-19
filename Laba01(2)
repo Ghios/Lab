@@ -1,13 +1,14 @@
 #include<stdio.h>
-#include<math.h>
-#include<cs50.h>
+#include <cs50.h>
 
 int main()
 {
     int n, m, result;
-    printf("Enter first variable: \n");
+    
+    printf("Enter n : \n");
     n = GetInt();
-    printf("Enter second variable: \n");
+    
+    printf("Enter n : \n");
     m = GetInt();
     
     result = n+++m;
