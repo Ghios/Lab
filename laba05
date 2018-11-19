@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <math.h>
+#include <cs50.h>
+
+int main ()
+{
+    int arr[3][3];
+    
+    for(int i = 0; i < 3; i++)
+    {
+        for(int j = 0; j < 3; j++)
+        {    
+        printf ("Enter the %d|%d element of the array: ", i, j);
+        arr[i][j] = GetInt();
+        }
+    }
+    
+    for(int i = 0; i < 3; i++)
+    {
+        for(int j = 0; j < 3; j++)
+        {    
+        printf ("%d ", arr[i][j]);
+        }
+        printf("\n");
+    }
+    
+    int res12 = 0, res13 = 0, res23 = 0;
+    int mn12 = 0, mn13 = 0, mn23 = 0;
+    for(int i = 0, j = 0; j < 3; j++)
+    {
+        res12 += arr[i][j] * arr[i + 1][j];
+    }
+    
+    for(int i = 0, j = 0; j < 3; j++)
+    {
+        res13 += arr[i][j] * arr[i + 2][j];
+    }
+    
+    for(int i = 0, j = 0; j < 3; j++)
+    {
+        res23 += arr[i + 1][j] * arr[i + 2][j];
+    }
+    int i = 0, j = 0;
+    mn12 = arr[i][j] * arr[i][j + 1] * arr[i][j+2];
+    mn13 = arr[i + 1][j] * arr[i + 1][j + 1] * arr[i + 1][j+2];
+    mn23 = arr[i + 2][j] * arr[i+2][j + 1] * arr[i + 2][j + 2]; 
+    
+    int n  = 0;
+    if(res12 == 0 && res13 == 0 && res23 == 0 )
+        n++;
+    
+    if(mn12 == 1 && mn13 == 1 && mn23 == 1) 
+        n++;
+    if(n == 2)
+        printf("Your array is ortonormovaniy!\n");
+    else
+        printf("Your array is NOT ortonormovaniy!\n");
+    
+}    
