@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <string.h>
+#include<cs50.h>
+
+int main (void)
+{
+    int size = 225;
+    printf("Enter your string: \n");
+    char *str = malloc(size);
+    fgets(str,255, stdin);
+    printf("Your string is :\n%s \n", str);
+    
+    int strsize = strlen(str);
+    printf("%d\n", strsize);
+    char *firstw = malloc(15);
+    
+    int counter = 0 , same = 0, j = 0;
+    
+    do
+    {
+        firstw[j] = str[j];
+        j++;
+    }
+    while(str[j] != ' ');
+    
+    printf("\nfirst word is  %s\n", firstw);
+    
+    int fsize = j;
+    printf ("size of first world is : %d \n", fsize);
+    int fwsize = j + 1;
+    printf ("you starts with %d \n", fwsize);
+    
+    for(int i = 0, n = fwsize ; str[n] != '\0'; n++)
+    {
+        if(str[n] == firstw[i])
+        {
+            counter++;
+            i++;
+        }
+        else if (str[n] == ' ')
+        {
+            if (counter == fsize)
+            {
+                same++;
+                
+            }
+            i = 0;
+            counter = 0;
+        }
+    
+    }
+    
+    printf("%d words = first word\n", same);
+}
