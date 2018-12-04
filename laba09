@@ -1,0 +1,101 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <cs50.h>
+
+void write_file(FILE *F,int num)
+{
+    char temp[257];
+    printf("Write down %d stsings to fill up F1.txt:\n",num);    
+    for(int i = 0; i < num;i++)
+    {
+        fgets(temp,255,stdin);
+        
+        if (temp[strlen(temp)-1]!='\n') 
+        {
+            temp[strlen(temp)]='\n';
+                temp[strlen(temp)+1]='\0';
+        }
+        
+        fputs(temp,F);
+     }
+     
+     rewind(F);
+}
+
+void print_file(FILE *F)
+{
+    char temp[257];
+    int count = 1;
+    fgets(temp,256,F);
+    do
+    {
+        printf("%d. %s",count++,temp);
+        fgets(temp,256,F);        
+    }while(!feof(F));
+    
+    rewind(F);
+}
+
+void copy_file(FILE *f1,FILE *f2)
+{
+    char temp[257];   
+    fgets(temp,256,f1);
+    int k;
+    
+    printf("Enter k, please\n");
+    k = GetInt();
+    int n = k;
+    do{
+       if(k < n + 5)
+        {
+            fputs(temp,f2); 
+        }
+        k++;
+        fgets(temp,256,f1);  
+    }while(!feof(f1));
+    rewind(f2);
+    rewind(f1);
+}
+
+int counting_golosni(FILE *f)
+{
+    char temp[257]; 
+    int count = 0;
+    fgets(temp,256,f);
+    do
+    {
+        for(int i = 0; i < strlen(temp); i++)
+        {
+            if(temp[i] == 'a' ||temp[i] == 'e'||temp[i] == 'y' ||temp[i] == 'u' ||temp[i] == 'i' ||temp[i] == 'o')
+            {
+                count++;
+            }
+        }
+        fgets(temp,256,f);
+    }while(!feof(f));
+    
+    rewind(f);
+    return count;
+}
+
+int main(void)
+{
+    FILE *f1,*f2;
+    if ((f1=fopen("F1.txt", "w+"))==NULL || (f2=fopen("F2.txt", "w+"))==NULL)
+    {
+        printf("Error reading file!");
+            exit(2);
+    }
+    printf("Enter the emount of strings : \n");
+    int emount = GetInt();
+    write_file(f1,emount);
+    printf("F1.txt:\n");
+    print_file(f1);
+    copy_file(f1,f2);
+    printf("F2.txt:\n");
+    print_file(f2);
+    printf("The emount of golosni in F2.txt: %d\n",counting_golosni(f2));
+    fclose(f1);
+    fclose(f2);
+}
